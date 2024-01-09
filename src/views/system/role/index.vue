@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<Top @add="add" @sear="sear"></Top>
+		<Top @add="add" @sear="sear" @outExcel="outExcel" :list="list"></Top>
 		<div class="centre">
 			<ListRol class="Listleft" :list="list" @del="del"></ListRol>
 			<Rigth class="Rigth" :text="text"></Rigth>
@@ -20,6 +20,7 @@ import ListRol from './components/ListRol.vue'
 import { ref } from 'vue'
 import * as TS from '@/utils/defind'
 import Addandmodify from './components/Addandmodify.vue'
+import {xlsx} from '@/utils/xlsx'
 const inof=ref({
 	page:0,
 	size:10,
@@ -39,6 +40,22 @@ const sear=(formInline:{user:string})=>{
 
 	getrolesAPI()
 }
+
+const listHander = {
+		name:'名称',
+		dataScope:'数据权限',
+		level:'角色级别',
+		description:'描述',
+		updateTime:'日期'
+}
+// 导出
+const outExcel = () => {
+
+  xlsx(list.value,listHander, '角色管理')
+	getrolesAPI()
+}
+
+
 
 const getrolesAPI=async()=>{
 	let res=await api.rolesAPI({page:inof.value.page,size:inof.value.size,sort:inof.value.sort,blurry:inof.value.blurry})

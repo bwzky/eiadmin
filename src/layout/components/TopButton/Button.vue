@@ -57,7 +57,7 @@
           ><el-icon><ElementPlusIconsVue.Delete /></el-icon>删除</el-button
         >
         <el-button style="background-color: #ffba00; border: none; color: #fff"
-          ><el-icon><ElementPlusIconsVue.Download /></el-icon>导出</el-button
+          @click="outExcel" ><el-icon><ElementPlusIconsVue.Download /></el-icon>导出</el-button
         >
       </div>
       <div class="rigth">
@@ -77,7 +77,7 @@
 
 <script setup lang="ts">
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
-import { ref, defineEmits } from 'vue'
+import { ref, defineEmits,defineProps } from 'vue'
 const emits = defineEmits()
 // const user = ref<string>('')
 // const date = ref<string>('')
@@ -86,12 +86,22 @@ const formInline = ref({
   user: '',
   date: ''
 })
+const prop=defineProps({
+	list:{
+		type:Array,
+		default:[]
+	}
+})
 const add = () => {
   emits('add')
 }
 const sear = () => {
 	console.log(11111);
   emits('sear', formInline.value)
+}
+
+const outExcel=()=>{
+	emits('outExcel')
 }
 </script>
 

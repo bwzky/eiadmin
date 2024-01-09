@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<div class="loading"><div class="loading1"></div></div>
+
+</body>
+</html>
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	body {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 100vh;
+		min-width: 100vw;
+		background: #ccc;
+	}
+
+	@keyframes spin {
+		0% {
+			transform: rotate(0deg);
+			/* animation-timing-function: linear; */
+		}
+		100% {
+			transform: rotate(360deg);
+			/* animation-timing-function: linear; */
+		}
+	}
+
+	.loading {
+		width: 100px;
+		aspect-ratio: 1;
+		border-radius: 100%;
+		background-image: conic-gradient(#5e92f3, 30%, #ffffff);
+		-webkit-mask-image: radial-gradient(
+			closest-side,
+			transparent 70%,
+			black 70%
+		);
+		animation: spin 1s linear infinite reverse;
+		position: relative;
+	}
+	.loading1{
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		background-color: red;
+		position: absolute;
+		top: 30;
+		left: 130;
+
+	}
+
+</style>

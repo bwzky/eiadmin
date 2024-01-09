@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="myCanvas"></canvas>
+	<script>
+		const canvas = document.getElementById('myCanvas'); // 获取Canvas元素
+const ctx = canvas.getContext('2d'); // 获取上下文对象
+let gradient = null; // 初始化渐变对象
+
+function draw() {
+    if (gradient === null) {
+        const colors = ['#ff6a00', '#f9d800']; // 定义渐变颜色数组
+        gradient = ctx.createLinearGradient(0, 0, canvas.width, 0); // 创建线性渐变对象
+
+        for (let i = 0; i <= 1; i += 0.1) {
+            gradient.addColorStop(i, colors[Math.floor((colors.length - 1) * i)]); // 根据百分比添加渐变颜色点
+        }
+    }
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // 清空画布
+    ctx.fillStyle = gradient; // 设置填充样式为渐变
+    ctx.fillRect(0, 0, canvas.width, canvas.height); // 绘制渐变区域
+
+    requestAnimationFrame(draw); // 不断调用自身函数实现连续渲染
+}
+
+draw(); // 开始绘制渐变效果
+	</script>
+</body>
+</html>
+
+<style>
+	@keyframes loading {
+    0% { background-position: -200px; }
+    50% { background-position: 400px; }
+}
+
+.loading-container span {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    animation: loading 1s linear infinite;
+    background-image: linear-gradient(to right, #ff6a00, #f9d800); /* 设置背景线性渐变色 */
+}
+</style>

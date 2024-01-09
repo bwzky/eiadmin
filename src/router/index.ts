@@ -54,6 +54,11 @@ const routes: Array<RouteRecordRaw> = [
 				name: 'tinymce',
 				component: () =>
 					import('../views/components/tinymce/index.vue')
+			},{
+				path: '/components/echarts',
+				name: 'echarts',
+				component: () =>
+					import('../views/components/echarts/index.vue')
 			}
 		],
   },
